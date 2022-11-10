@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float _speed;
 
+
     private Vector3 _move;
 
     // Update is called once per frame
@@ -18,4 +19,5 @@ public class PlayerMovement : MonoBehaviour
     {
         transform.Translate(_move * _speed * Time.deltaTime);
     }
+  
 }
