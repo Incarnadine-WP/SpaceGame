@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class Player: MonoBehaviour
 {
     [SerializeField] private float _speed;
 
+    public ParticleSystem _playerDestroyed;
 
     private Vector3 _move;
 

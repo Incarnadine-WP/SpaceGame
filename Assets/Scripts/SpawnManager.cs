@@ -6,13 +6,16 @@ public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _enemyPrefabs;
 
+    private PauseMenu _pauseMenu;
+
     private float spawnX = 8;
-    private bool isGameActive;
 
     // Start is called before the first frame update
     void Start()
     {
-        isGameActive = true;
+        _pauseMenu = GameObject.Find("Canvas").GetComponent<PauseMenu>();
+        _pauseMenu.isGameActive = true;
+
         StartCoroutine(SpawnEnemies());
     }
 
@@ -25,13 +28,13 @@ public class SpawnManager : MonoBehaviour
 
     private IEnumerator SpawnEnemies()
     {
-        while (isGameActive)
+        var waitForSec = new WaitForSeconds(2f);
+        while (_pauseMenu.isGameActive)
         {
-            yield return new WaitForSeconds(2f);
+            yield return waitForSec;
             int index = Random.Range(0, _enemyPrefabs.Count);
 
             Instantiate(_enemyPrefabs[index], RandomSpawnPosition(), _enemyPrefabs[index].transform.rotation);
         }
-        
     }
 }

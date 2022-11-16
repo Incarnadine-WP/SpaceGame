@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Asteroid
   - Bullet
+  - EnemyBullet
+  - Enemy
   layers:
   - Default
   - TransparentFX

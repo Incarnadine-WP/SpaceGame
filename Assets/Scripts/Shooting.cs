@@ -25,7 +25,7 @@ public class Shooting : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            _audio.PlayOneShot(_fireSound, 0.5f);
+            _audio.PlayOneShot(_fireSound, 0.2f);
             GameObject pooledProjectile = ObectPooling.Instance.GetPooledObject();
 
             if (pooledProjectile != null)
