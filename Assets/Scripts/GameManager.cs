@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     public int currentLives = 3;
 
-    private int score;
+    public int score = 0;
 
 
     public void UpdateLives()
@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateScore(int amount)
     {
-        score = amount;
+        score += amount;
         scoreText.text = "Score: " + score;
     }
 

@@ -5,18 +5,27 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _enemyPrefabs;
+    [SerializeField] private GameObject _boss;
 
+    private GameManager _gameManager;
     private PauseMenu _pauseMenu;
 
     private float spawnX = 8;
+    private int _bossCount = 0;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
+        _gameManager = FindObjectOfType<GameManager>().GetComponent<GameManager>();
         _pauseMenu = GameObject.Find("Canvas").GetComponent<PauseMenu>();
         _pauseMenu.isGameActive = true;
 
         StartCoroutine(SpawnEnemies());
+    }
+
+    private void Update()
+    {
+        SpawnBoss();
     }
 
     private Vector3 RandomSpawnPosition()
@@ -29,7 +38,7 @@ public class SpawnManager : MonoBehaviour
     private IEnumerator SpawnEnemies()
     {
         var waitForSec = new WaitForSeconds(2f);
-        while (_pauseMenu.isGameActive)
+        while (_bossCount == 0)
         {
             yield return waitForSec;
             int index = Random.Range(0, _enemyPrefabs.Count);
@@ -37,4 +46,15 @@ public class SpawnManager : MonoBehaviour
             Instantiate(_enemyPrefabs[index], RandomSpawnPosition(), _enemyPrefabs[index].transform.rotation);
         }
     }
+
+    private void SpawnBoss()
+    {
+        StopCoroutine(SpawnEnemies());
+        if(_gameManager.score >= 30 && _bossCount == 0)
+        {
+            _bossCount++;
+            Instantiate(_boss, RandomSpawnPosition(), _boss.transform.rotation);
+        }
+    }
+
 }

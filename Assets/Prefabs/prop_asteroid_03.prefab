@@ -31,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1964915568907526832}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -116,7 +116,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _asteroidDestroyedSound: {fileID: 8300000, guid: 09887d42d3d69114798583c324d6d9e0, type: 3}
   _explosionAsteroid: {fileID: 19800004, guid: fb8f311b611770e469d5b37787f765af, type: 3}
-  _currentPlayerLives: {fileID: -4482516054510654449, guid: 280c2eb111dd0634eb6b9c599ad1c499, type: 3}
 --- !u!114 &3600937349112880301
 MonoBehaviour:
   m_ObjectHideFlags: 0

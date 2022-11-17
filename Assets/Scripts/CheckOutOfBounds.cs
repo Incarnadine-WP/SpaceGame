@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class CheckOutOfBounds : MonoBehaviour
 {
-    private float _yBound = -19f;
+    private float _yOtherBound = -19f;
     private float _xBound = 9f;
+    private float _yMinPlayerBounds = -14;
+    private float _yMaxPlayerBounds = -10;
 
     private void Update()
     {
         BoundsCheck();
     }
 
-    // deactivate item if it leaves the screen
+    // deactivate/destroy item if it leaves the screen
     private void BoundsCheck()
     {
         PlayerBoundsCheck();
@@ -29,9 +31,17 @@ public class CheckOutOfBounds : MonoBehaviour
             {
                 transform.position = new Vector3(_xBound, transform.position.y, transform.position.z);
             }
-            if (transform.position.x < -_xBound)
+            else if (transform.position.x < -_xBound)
             {
                 transform.position = new Vector3(-_xBound, transform.position.y, transform.position.z);
+            }
+            else if (transform.position.y < _yMinPlayerBounds)
+            {
+                transform.position = new Vector3(transform.position.x, _yMinPlayerBounds, transform.position.z);
+            }
+            else if (transform.position.y > _yMaxPlayerBounds)
+            {
+                transform.position = new Vector3(transform.position.x, _yMaxPlayerBounds, transform.position.z);
             }
         }
     }
@@ -40,7 +50,7 @@ public class CheckOutOfBounds : MonoBehaviour
     {
         if (gameObject.CompareTag("Bullet"))
         {
-            if (transform.position.y <= _yBound || transform.position.y >= 0)
+            if (transform.position.y <= _yOtherBound || transform.position.y >= 0)
                 gameObject.SetActive(false);
         }
     }
@@ -49,7 +59,7 @@ public class CheckOutOfBounds : MonoBehaviour
     {
         if (gameObject.CompareTag("EnemyBullet"))
         {
-            if (transform.position.y <= _yBound || transform.position.y >= 0)
+            if (transform.position.y <= _yOtherBound || transform.position.y >= 0)
                 Destroy(gameObject);
         }
     }
@@ -58,7 +68,7 @@ public class CheckOutOfBounds : MonoBehaviour
     {
         if (gameObject.CompareTag("Asteroid"))
         {
-            if (transform.position.y <= _yBound)
+            if (transform.position.y <= _yOtherBound)
                 Destroy(gameObject);
         }
     }

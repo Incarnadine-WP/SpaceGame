@@ -45,14 +45,14 @@ public class Asteroids : MonoBehaviour
             if (_gameManager.currentLives <= 0)
             {
                 Destroy(collision.gameObject);
-                Instantiate(_player._playerDestroyed, transform.position, _explosionAsteroid.transform.rotation);
+                Instantiate(_player.playerDestroyed, transform.position, _player.playerDestroyed.transform.rotation);
                 print("Game Over");
                 _pauseMenu.GameOver();
             }
         }
         else if (collision.gameObject.CompareTag("Bullet"))
         {
-            _audio.PlayOneShot(_asteroidDestroyedSound, 0.5f);
+            _audio.PlayOneShot(_asteroidDestroyedSound, 0.3f);
             collision.gameObject.SetActive(false);
             print("Asteroid destroyed!");
             Destroy(gameObject);
