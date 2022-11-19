@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3600937349112880301}
   - component: {fileID: 2854432594883049742}
   - component: {fileID: 6112933475538270332}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: prop_asteroid_03
   m_TagString: Asteroid
   m_Icon: {fileID: 0}
@@ -116,6 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _asteroidDestroyedSound: {fileID: 8300000, guid: 09887d42d3d69114798583c324d6d9e0, type: 3}
   _explosionAsteroid: {fileID: 19800004, guid: fb8f311b611770e469d5b37787f765af, type: 3}
+  _enemyShip: {fileID: 2346394131232153753, guid: 1cdc36f7bc5a2504a8ce67c9f35bc5e6, type: 3}
 --- !u!114 &3600937349112880301
 MonoBehaviour:
   m_ObjectHideFlags: 0

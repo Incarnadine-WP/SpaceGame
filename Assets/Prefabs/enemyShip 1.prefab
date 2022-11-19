@@ -241,7 +241,7 @@ GameObject:
   - component: {fileID: 4626519547542178731}
   - component: {fileID: 747070334}
   m_Layer: 6
-  m_Name: enemyShip
+  m_Name: enemyShip 1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -341,7 +341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecdef9ef9c7bd9b47ae7d42dfb0b5a0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _path: {fileID: 4503813595750153396, guid: ae26315ad1dd6454fa8f59051ebaa21c, type: 3}
+  _path: {fileID: 4503813595750153396, guid: 7781b64ff264d494d8926ba8b3f2e188, type: 3}
   _enemyHPBar: {fileID: 8468697520566101602}
   _explosionEnemyShip: {fileID: 19800012, guid: 0d0e5801c22ba3e4282d4cb958668b9b, type: 3}
   _animator: {fileID: 747070334}

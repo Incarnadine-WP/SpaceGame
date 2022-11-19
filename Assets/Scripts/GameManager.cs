@@ -8,13 +8,11 @@ public class GameManager : MonoBehaviour
 {
     public Animator[] _animator;
     public Image[] _hearts;
-
     public TextMeshProUGUI scoreText;
 
     public int currentLives = 3;
-
     public int score = 0;
-
+    public int killedEnemy = 0;
 
     public void UpdateLives()
     {
@@ -45,6 +43,12 @@ public class GameManager : MonoBehaviour
     {
         score += amount;
         scoreText.text = "Score: " + score;
+    }
+
+    public void KilledEnemyShips(int num)
+    {
+        killedEnemy += num;
+        Debug.Log(killedEnemy);
     }
 
 

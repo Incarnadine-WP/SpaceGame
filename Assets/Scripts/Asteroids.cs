@@ -15,19 +15,20 @@ public class Asteroids : MonoBehaviour
     private AudioSource _audio;
     private Rigidbody _enemyRB;
 
-    private int _lives;
-    private float _maxSpeed = 7f;
-    private float _minSpeed = 1f;
-    private float _maxTorque = 10f;
+    private float _maxSpeed = 6f;
+    private float _minSpeed = 2f;
+    private float _maxTorque = 6f;
 
 
     private void Start()
     {
+
         _pauseMenu = GameObject.Find("Canvas").GetComponent<PauseMenu>();
         _player = GameObject.Find("Player").GetComponent<Player>();
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         _audio = GameObject.Find("Camera").GetComponent<AudioSource>();
         _enemyRB = GetComponent<Rigidbody>();
+
         AsteroidsMove();
         EnemyTorque();
     }
@@ -36,9 +37,8 @@ public class Asteroids : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-
-            // Destroy(collision.gameObject);
             _gameManager.UpdateLives();
+            _audio.PlayOneShot(_asteroidDestroyedSound, 1f);
             Destroy(gameObject);
             Instantiate(_explosionAsteroid, transform.position, _explosionAsteroid.transform.rotation);
 
@@ -52,12 +52,12 @@ public class Asteroids : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Bullet"))
         {
-            _audio.PlayOneShot(_asteroidDestroyedSound, 0.3f);
+            _audio.PlayOneShot(_asteroidDestroyedSound, 1f);
+            _gameManager.UpdateScore(10);
             collision.gameObject.SetActive(false);
             print("Asteroid destroyed!");
             Destroy(gameObject);
             Instantiate(_explosionAsteroid, transform.position, _explosionAsteroid.transform.rotation);
-            _gameManager.UpdateScore(10);
         }
     }
 

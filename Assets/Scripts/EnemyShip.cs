@@ -7,23 +7,31 @@ public class EnemyShip : MonoBehaviour
     [SerializeField] private Transform _path;
     [SerializeField] private EnemyHpBar _enemyHPBar;
     [SerializeField] private ParticleSystem _explosionEnemyShip;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private AudioClip _enemyShipDestroyedSound;
+
+    private AudioSource _audio;
+    private PauseMenu _pauseMenu;
 
     private Transform[] _wayPoints;
+    private GameManager _gameManager;
 
     private float _speed = 5f;
     private int _currentPoint;
     private int _enemyMaxHP = 100;
     private int _currentEnemyHP;
 
-
     // Start is called before the first frame update
     private void Start()
     {
+        _audio = FindObjectOfType<AudioSource>().GetComponent<AudioSource>();
+        _pauseMenu = FindObjectOfType<PauseMenu>().GetComponent<PauseMenu>();
+        _gameManager = FindObjectOfType<GameManager>().GetComponent<GameManager>();
+
         EnemyHP();
         PointsToPatrol();
     }
 
-    // Update is called once per frame
     private void Update()
     {
         MoveToPatrolPoints();
@@ -59,13 +67,24 @@ public class EnemyShip : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet"))
         {
             TakeDamage(10);
+            _animator.Play("EnemyTakeDmg");
+
             collision.gameObject.SetActive(false);
-            if(_currentEnemyHP <= 0)
+
+            if (_currentEnemyHP <= 0)
             {
                 Instantiate(_explosionEnemyShip, transform.position, _explosionEnemyShip.transform.rotation);
                 Debug.Log("EnemyShip Destroyed!\nYou Win.");
+                _gameManager.UpdateScore(40);
+                _gameManager.KilledEnemyShips(1);
+                _audio.PlayOneShot(_enemyShipDestroyedSound, 1f);
                 Destroy(gameObject);
-            }
+
+                if (_gameManager.killedEnemy == 3)
+                {
+                    _pauseMenu.LevelComplete();
+                }
+            } 
         }
     }
 
@@ -80,5 +99,5 @@ public class EnemyShip : MonoBehaviour
         _currentEnemyHP -= dmg;
         _enemyHPBar.SetHp(_currentEnemyHP);
     }
-   
+
 }

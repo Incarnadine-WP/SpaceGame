@@ -8,13 +8,20 @@ using UnityEditor;
 
 public class PauseMenu : MonoBehaviour
 {
+    [HideInInspector] public GameObject pauseMenuUI;
+    [HideInInspector] public GameObject gameOverMenu;
+    [HideInInspector] public GameObject levelCompleteMenu;
 
     public static bool gameIsPaused = false;
 
-    public GameObject pauseMenuUI;
-    public GameObject gameOverMenu;
-
     public bool isGameActive;
+
+    private AudioSource _audio;
+
+    private void Start()
+    {
+        _audio = FindObjectOfType<AudioSource>().GetComponent<AudioSource>();
+    }
 
     // Update is called once per frame
     private void Update()
@@ -66,6 +73,7 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene(1);
         Time.timeScale = 1f;
         gameOverMenu.SetActive(false);
+        _audio.Play();
     }
 
     public void GameOver()
@@ -73,5 +81,14 @@ public class PauseMenu : MonoBehaviour
         isGameActive = false;
         Time.timeScale = 0.2f;
         gameOverMenu.SetActive(true);
+        _audio.Stop();
+    }
+
+    public void LevelComplete()
+    {
+        levelCompleteMenu.SetActive(true);
+        isGameActive = false;
+        Time.timeScale = 0.2f;
+        _audio.Stop();
     }
 }

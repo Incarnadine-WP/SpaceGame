@@ -5,12 +5,12 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _enemyPrefabs;
-    [SerializeField] private GameObject _boss;
+    [SerializeField] private GameObject [] _boss;
 
     private GameManager _gameManager;
     private PauseMenu _pauseMenu;
 
-    private float spawnX = 8;
+    private float spawnX = 7.5f;
     private int _bossCount = 0;
 
     // Start is called before the first frame update
@@ -35,10 +35,10 @@ public class SpawnManager : MonoBehaviour
         return spawnPosition;
     }
 
-    private IEnumerator SpawnEnemies()
+    public IEnumerator SpawnEnemies()
     {
         var waitForSec = new WaitForSeconds(2f);
-        while (_bossCount == 0)
+        while (_pauseMenu.isGameActive && _bossCount != 2)
         {
             yield return waitForSec;
             int index = Random.Range(0, _enemyPrefabs.Count);
@@ -50,11 +50,19 @@ public class SpawnManager : MonoBehaviour
     private void SpawnBoss()
     {
         StopCoroutine(SpawnEnemies());
-        if(_gameManager.score >= 30 && _bossCount == 0)
+        if (_gameManager.score >= 30 && _bossCount == 0)
         {
             _bossCount++;
-            Instantiate(_boss, RandomSpawnPosition(), _boss.transform.rotation);
+            Instantiate(_boss[0], RandomSpawnPosition(), _boss[0].transform.rotation);
         }
-    }
 
+        else if (_gameManager.score >= 150 && _bossCount < 2)
+        {
+            _bossCount++;
+            Instantiate(_boss[0], RandomSpawnPosition(), _boss[0].transform.rotation);
+            Instantiate(_boss[1], RandomSpawnPosition(), _boss[1].transform.rotation);
+        }
+
+    }
+   
 }

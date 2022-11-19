@@ -4,10 +4,21 @@ using UnityEngine;
 
 public class CheckOutOfBounds : MonoBehaviour
 {
+    private GameManager _gameManager;
+    private PauseMenu _pauseMenu;
+
+
     private float _yOtherBound = -19f;
-    private float _xBound = 9f;
+    private float _xBound = 7.5f;
     private float _yMinPlayerBounds = -14;
     private float _yMaxPlayerBounds = -10;
+
+
+    private void Start()
+    {
+        _gameManager = FindObjectOfType<GameManager>().GetComponent<GameManager>();
+        _pauseMenu = FindObjectOfType<PauseMenu>().GetComponent<PauseMenu>();
+    }
 
     private void Update()
     {
@@ -69,7 +80,14 @@ public class CheckOutOfBounds : MonoBehaviour
         if (gameObject.CompareTag("Asteroid"))
         {
             if (transform.position.y <= _yOtherBound)
+            {
                 Destroy(gameObject);
+                _gameManager.UpdateLives();
+                if(_gameManager.currentLives <= 0)
+                {
+                    _pauseMenu.GameOver();
+                }
+            }
         }
     }
 }

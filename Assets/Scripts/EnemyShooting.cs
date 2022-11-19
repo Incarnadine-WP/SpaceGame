@@ -32,8 +32,8 @@ public class EnemyShooting : MonoBehaviour
         }
     }
 
-   
+
 }
-    
+
 
 
