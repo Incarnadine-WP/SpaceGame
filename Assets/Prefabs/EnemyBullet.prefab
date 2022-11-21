@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3219859021594330367}
   - component: {fileID: 8814644948421261100}
   - component: {fileID: 4488008633998391128}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 479817510414432755}
   - component: {fileID: 3703301481352219956}
   - component: {fileID: -1633978169551536731}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: EnemyBullet
   m_TagString: EnemyBullet
   m_Icon: {fileID: 0}

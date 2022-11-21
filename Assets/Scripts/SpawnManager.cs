@@ -17,7 +17,7 @@ public class SpawnManager : MonoBehaviour
     private void Start()
     {
         _gameManager = FindObjectOfType<GameManager>().GetComponent<GameManager>();
-        _pauseMenu = GameObject.Find("Canvas").GetComponent<PauseMenu>();
+        _pauseMenu = FindObjectOfType<PauseMenu>().GetComponent<PauseMenu>();
         _pauseMenu.isGameActive = true;
 
         StartCoroutine(SpawnEnemies());
@@ -62,7 +62,5 @@ public class SpawnManager : MonoBehaviour
             Instantiate(_boss[0], RandomSpawnPosition(), _boss[0].transform.rotation);
             Instantiate(_boss[1], RandomSpawnPosition(), _boss[1].transform.rotation);
         }
-
     }
-   
 }

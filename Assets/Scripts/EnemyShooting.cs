@@ -14,10 +14,9 @@ public class EnemyShooting : MonoBehaviour
     private void Start()
     {
         _gameManager = FindObjectOfType<GameManager>().GetComponent<GameManager>();
-        _audio = GameObject.Find("Camera").GetComponent<AudioSource>();
+        _audio = FindObjectOfType<AudioSource>().GetComponent<AudioSource>();
         StartCoroutine(EnemyFire());
     }
-
 
     private IEnumerator EnemyFire()
     {
@@ -31,8 +30,6 @@ public class EnemyShooting : MonoBehaviour
             Instantiate(_enemybullet, transform.position, Quaternion.Euler(0, 0, 180)); // create and turn bullet on 180 degrees to point towards the player
         }
     }
-
-
 }
 
 

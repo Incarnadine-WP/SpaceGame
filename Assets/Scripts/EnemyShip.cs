@@ -12,7 +12,6 @@ public class EnemyShip : MonoBehaviour
 
     private AudioSource _audio;
     private PauseMenu _pauseMenu;
-
     private Transform[] _wayPoints;
     private GameManager _gameManager;
 
@@ -74,7 +73,7 @@ public class EnemyShip : MonoBehaviour
             if (_currentEnemyHP <= 0)
             {
                 Instantiate(_explosionEnemyShip, transform.position, _explosionEnemyShip.transform.rotation);
-                Debug.Log("EnemyShip Destroyed!\nYou Win.");
+                Debug.Log("EnemyShip Destroyed!");
                 _gameManager.UpdateScore(40);
                 _gameManager.KilledEnemyShips(1);
                 _audio.PlayOneShot(_enemyShipDestroyedSound, 1f);
@@ -99,5 +98,4 @@ public class EnemyShip : MonoBehaviour
         _currentEnemyHP -= dmg;
         _enemyHPBar.SetHp(_currentEnemyHP);
     }
-
 }

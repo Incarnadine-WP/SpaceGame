@@ -7,12 +7,10 @@ public class CheckOutOfBounds : MonoBehaviour
     private GameManager _gameManager;
     private PauseMenu _pauseMenu;
 
-
     private float _yOtherBound = -19f;
     private float _xBound = 7.5f;
     private float _yMinPlayerBounds = -14;
     private float _yMaxPlayerBounds = -10;
-
 
     private void Start()
     {
@@ -20,10 +18,7 @@ public class CheckOutOfBounds : MonoBehaviour
         _pauseMenu = FindObjectOfType<PauseMenu>().GetComponent<PauseMenu>();
     }
 
-    private void Update()
-    {
-        BoundsCheck();
-    }
+    private void Update() => BoundsCheck();
 
     // deactivate/destroy item if it leaves the screen
     private void BoundsCheck()

@@ -48,9 +48,5 @@ public class GameManager : MonoBehaviour
     public void KilledEnemyShips(int num)
     {
         killedEnemy += num;
-        Debug.Log(killedEnemy);
     }
-
-
-
 }

@@ -23,14 +23,14 @@ public class Asteroids : MonoBehaviour
     private void Start()
     {
 
-        _pauseMenu = GameObject.Find("Canvas").GetComponent<PauseMenu>();
-        _player = GameObject.Find("Player").GetComponent<Player>();
-        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        _audio = GameObject.Find("Camera").GetComponent<AudioSource>();
+        _pauseMenu = FindObjectOfType<PauseMenu>().GetComponent<PauseMenu>();
+        _player = FindObjectOfType<Player>().GetComponent<Player>();
+        _gameManager = FindObjectOfType<GameManager>().GetComponent<GameManager>();
+        _audio = FindObjectOfType<AudioSource>().GetComponent<AudioSource>();
         _enemyRB = GetComponent<Rigidbody>();
 
         AsteroidsMove();
-        EnemyTorque();
+        AsteroidsTorque();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -67,7 +67,7 @@ public class Asteroids : MonoBehaviour
     }
 
     // adding rotation of asteroids
-    private void EnemyTorque()
+    private void AsteroidsTorque()
     {
         _enemyRB.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.VelocityChange);
     }

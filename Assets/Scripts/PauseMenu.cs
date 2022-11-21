@@ -13,7 +13,6 @@ public class PauseMenu : MonoBehaviour
     [HideInInspector] public GameObject levelCompleteMenu;
 
     public static bool gameIsPaused = false;
-
     public bool isGameActive;
 
     private AudioSource _audio;

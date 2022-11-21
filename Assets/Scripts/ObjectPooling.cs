@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObectPooling : MonoBehaviour
+public class ObjectPooling : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _pooledObjects;
     [SerializeField] private GameObject _objectToPool;
     [SerializeField] private int _amountToPool;
 
-    public static ObectPooling Instance;
+    public static ObjectPooling Instance;
 
     private void Awake()
     {
         Instance = this;
     }
-    
-    void Start()
+
+    private void Start()
     {
         // Loop through list of pooled objects,deactivating them and adding them to the list 
         _pooledObjects = new List<GameObject>();
