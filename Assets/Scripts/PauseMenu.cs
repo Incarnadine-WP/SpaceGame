@@ -11,6 +11,8 @@ public class PauseMenu : MonoBehaviour
     [HideInInspector] public GameObject pauseMenuUI;
     [HideInInspector] public GameObject gameOverMenu;
     [HideInInspector] public GameObject levelCompleteMenu;
+     public GameObject optionList;
+
 
     public static bool gameIsPaused = false;
     public bool isGameActive;
@@ -41,6 +43,8 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
+        optionList.SetActive(false);
+
         Time.timeScale = 1f;
         gameIsPaused = false;
     }
